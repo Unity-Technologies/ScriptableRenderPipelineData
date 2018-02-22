@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.07875507, g: 0.07704143, b: 0.06676101, a: 1}
+  m_IndirectSpecularColor: {r: 0.07875386, g: 0.07704143, b: 0.066761576, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 25518113}
   - component: {fileID: 25518112}
   - component: {fileID: 25518111}
+  - component: {fileID: 25518110}
   m_Layer: 0
   m_Name: Camera_HeadDir
   m_TagString: Untagged
@@ -325,6 +326,60 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &25518110
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 25518109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  renderingPath: 0
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_FrameSettings:
+    enableShadow: 1
+    enableContactShadows: 1
+    enableSSR: 1
+    enableSSAO: 1
+    enableSubsurfaceScattering: 1
+    enableTransmission: 1
+    diffuseGlobalDimmer: 1
+    specularGlobalDimmer: 1
+    enableForwardRenderingOnly: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableAlphaTestOnlyInDeferredPrepass: 0
+    enableTransparentPrepass: 1
+    enableMotionVectors: 1
+    enableObjectMotionVectors: 1
+    enableDBuffer: 1
+    enableAtmosphericScattering: 1
+    enableRoughRefraction: 1
+    enableTransparentPostpass: 1
+    enableDistortion: 1
+    enablePostprocess: 1
+    enableStereo: 1
+    enableAsyncCompute: 1
+    enableOpaqueObjects: 1
+    enableTransparentObjects: 1
+    enableMSAA: 0
+    enableShadowMask: 0
+    lightLoopSettings:
+      enableTileAndCluster: 1
+      enableComputeLightEvaluation: 1
+      enableComputeLightVariants: 1
+      enableComputeMaterialVariants: 1
+      enableFptlForForwardOpaque: 1
+      enableBigTilePrepass: 1
+      isFptlEnabled: 1
 --- !u!124 &25518111
 Behaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +416,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -1388,6 +1443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 1
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
   renderingPath: 0
   volumeLayerMask:
     serializedVersion: 2
@@ -2299,22 +2357,26 @@ MonoBehaviour:
   shadowResolution: 1024
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 1
-  contactShadowLength: 0.15
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 25
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.007
   - 0.028
   - 0.18
   shadowCascadeBorders:
-  - 0.333
-  - 0.322
-  - 0.272
-  - 0.356
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   shadowAlgorithm: 0
   shadowVariant: 3
   shadowPrecision: 0
@@ -4480,12 +4542,16 @@ MonoBehaviour:
   shadowResolution: 1024
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05
@@ -6258,12 +6324,16 @@ MonoBehaviour:
   shadowResolution: 512
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05
@@ -8171,6 +8241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 1
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
   renderingPath: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -9584,12 +9657,16 @@ MonoBehaviour:
   shadowResolution: 512
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05

@@ -571,12 +571,16 @@ MonoBehaviour:
   shadowResolution: 512
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05
@@ -706,22 +710,26 @@ MonoBehaviour:
   shadowResolution: 1024
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
-  - 0
-  - 0
-  - 0.045
+  - 0.05
+  - 0.15
+  - 0.3
   shadowCascadeBorders:
-  - 0.333
-  - 0.322
-  - 0.272
-  - 0.356
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   shadowAlgorithm: 0
   shadowVariant: 3
   shadowPrecision: 0
@@ -1053,12 +1061,16 @@ MonoBehaviour:
   shadowResolution: 1024
   shadowDimmer: 1
   shadowFadeDistance: 10
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05
@@ -1358,12 +1370,16 @@ MonoBehaviour:
   shadowResolution: 512
   shadowDimmer: 1
   shadowFadeDistance: 10000
-  enableContactShadows: 0
-  contactShadowLength: 0
-  contactShadowDistanceScaleFactor: 0.5
-  contactShadowMaxDistance: 50
-  contactShadowFadeDistance: 5
-  contactShadowSampleCount: 8
+  viewBiasMin: 0.5
+  viewBiasMax: 10
+  viewBiasScale: 1
+  normalBiasMin: 0.2
+  normalBiasMax: 4
+  normalBiasScale: 1
+  sampleBiasScale: 1
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
   shadowCascadeCount: 4
   shadowCascadeRatios:
   - 0.05

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.Profiling;
+using UnityEngine.Rendering;
 
 public class MiniProfiler : MonoBehaviour {
 
@@ -12,7 +13,6 @@ public class MiniProfiler : MonoBehaviour {
     private const int kAverageFrameCount = 64;
     private float m_AccDeltaTime;
     private float m_AvgDeltaTime;
- //   private	bool m_UseNewBatcher = false;
 
     internal class RecorderEntry
     {
@@ -29,48 +29,12 @@ public class MiniProfiler : MonoBehaviour {
     RecorderEntry[] recordersList =
     {
         new RecorderEntry() { name="RenderLoop.Draw" },
-//        new RecorderEntry() { name="BatchRenderer.Flush" },
         new RecorderEntry() { name="Shadows.Draw" },
-//        new RecorderEntry() { name="BatchRenderer.ApplyShaderPass" },
-//            new RecorderEntry() { name="Batch.DrawStatic" },
-//        new RecorderEntry() { name="DrawBuffersBatchMode" },
-/*
-        new RecorderEntry() { name="NewBatch.Instances" },
-        new RecorderEntry() { name="NewBatch.Elements" },
-        new RecorderEntry() { name="NewBatch.DrawRanges" },
-        new RecorderEntry() { name="NewBatch.S-Instances" },
-        new RecorderEntry() { name="NewBatch.S-Elements" },
-        new RecorderEntry() { name="NewBatch.S-DrawRanges" },
-*/
-
-
-/*
-        new RecorderEntry() { name="gBatchGBufferObj" },
-        new RecorderEntry() { name="gBatchGBufferBatch" },
-        new RecorderEntry() { name="gBatchShadowObj" },
-        new RecorderEntry() { name="gBatchShadowBatch" },
-*/
-
-    /*
-            new RecorderEntry() { name="Map_PerDraw_Buffer" },
-            new RecorderEntry() { name="Unmap_PerDraw_Buffer" },
-            new RecorderEntry() { name="DrawBuffersBatchMode" },
-            new RecorderEntry() { name="DrawBatchIndexed" },
-            new RecorderEntry() { name="BatchRenderer.ApplyShaderPass" },
-            new RecorderEntry() { name="PerformFlushProperties" },
-    */
-
-
-    /*
-            new RecorderEntry() { name="GUI.Repaint" },
-            new RecorderEntry() { name="PrepareValues" },
-            new RecorderEntry() { name="ApplyGpuProgram" },
-            new RecorderEntry() { name="WriteParameters" },
-            new RecorderEntry() { name="FlushBuffers" },
-            new RecorderEntry() { name="BindBuffers" },
-            new RecorderEntry() { name="Gfx.ProcessCommand" },
-    */
-};
+        new RecorderEntry() { name="RenderLoopNewBatcher.Draw" },
+        new RecorderEntry() { name="ShadowLoopNewBatcher.Draw" },
+        new RecorderEntry() { name="RenderLoopDevice.Idle" },
+        new RecorderEntry() { name="StaticBatchDraw.Count" },
+    };
 
     void Awake()
     {
@@ -87,6 +51,14 @@ public class MiniProfiler : MonoBehaviour {
 
     void Update()
     {
+
+        if (!Application.isEditor)
+        {
+            if ( Input.GetKeyDown(KeyCode.F9))
+            {
+//                GraphicsSettings.useScriptableRenderPipelineBatching = !GraphicsSettings.useScriptableRenderPipelineBatching;
+            }
+        }
 
         if (m_Enable)
         {
@@ -125,24 +97,12 @@ public class MiniProfiler : MonoBehaviour {
 
     void OnGUI()
     {
-
         if (m_Enable)
         {
-/*
-			GUI.changed = false;
-			if ( !Application.isEditor )
-			{
-				m_UseNewBatcher = GUI.Toggle(new Rect(10, 30, 200, 20), m_UseNewBatcher, "Use new render batch");
-				if (GUI.changed)
-				{
-					UnityEngine.Experimental.Rendering.ScriptableRenderContext.UseNewBatchRenderer(m_UseNewBatcher);
-				}
-			}
-*/
             GUI.color = new Color(1, 1, 1, .75f);
             float w = 500, h = 24 + (recordersList.Length+1) * 16 + 8;
 
-            GUILayout.BeginArea(new Rect(10, 50, w, h), "Mini Profiler", GUI.skin.window);
+            GUILayout.BeginArea(new Rect(32, 50, w, h), "Mini Profiler", GUI.skin.window);
             string sLabel = System.String.Format("<b>{0:F2} FPS ({1:F2}ms)</b>\n", 1.0f / m_AvgDeltaTime, Time.deltaTime * 1000.0f);
             for (int i = 0; i < recordersList.Length; i++)
             {

@@ -562,6 +562,7 @@ Material:
     - _VertexColorHeightFactor: 0.3
     - _VertexColorMode: 1
     - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 4
     - _ZTestMode: 8
     - _ZWrite: 1
     m_Colors:

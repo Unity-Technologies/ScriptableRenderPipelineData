@@ -100,7 +100,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 		}
 	}
 
-	public class OnTileDeferredRenderPipelineInstance : RenderPipeline {
+	public class OnTileDeferredRenderPipelineInstance: RenderPipelineBase {
 
 		private readonly OnTileDeferredRenderPipeline m_Owner;
 
@@ -112,9 +112,9 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				m_Owner.Build();
 		}
 
-		public override void Dispose()
+		protected override void Dispose(bool disposing)
 		{
-			base.Dispose();
+			base.Dispose(disposing);
 			if (m_Owner != null)
 				m_Owner.Cleanup();
 		}
@@ -388,12 +388,12 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 			foreach (var camera in cameras) {
 				// Culling
 				ScriptableCullingParameters cullingParams;
-				if (!CullResults.GetCullingParameters (camera, out cullingParams))
+				if (!camera.TryGetCullingParameters (camera, out cullingParams))
 					continue;
 
 				m_ShadowMgr.UpdateCullingParameters(ref cullingParams);
 
-				var cullResults = CullResults.Cull (ref cullingParams, context);
+				var cullResults = context.Cull (ref cullingParams);
 
 				NewFrame ();
 
@@ -460,7 +460,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				new[] { s_GBufferAlbedo, s_GBufferSpecRough, s_GBufferNormal, s_GBufferEmission, s_GBufferRedF32 }, s_Depth)) {
 
 				// GBuffer pass
-				using (new RenderPass.SubPass (rp, s_SupportsReadOnlyDepth ?
+				using (new SubPass (rp, s_SupportsReadOnlyDepth ?
 					new[] { s_GBufferAlbedo, s_GBufferSpecRough, s_GBufferNormal, s_GBufferEmission } :
 					new[] { s_GBufferAlbedo, s_GBufferSpecRough, s_GBufferNormal, s_GBufferEmission, s_GBufferRedF32 }, null)) {
 					using (var cmd = new CommandBuffer { name = "Create G-Buffer" }) {
@@ -470,18 +470,20 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 						loop.ExecuteCommandBuffer (cmd);
 
 						// render opaque objects using Deferred pass
-						var drawSettings = new DrawRendererSettings (camera, new ShaderPassName ("Deferred")) {
-							sorting = { flags = SortFlags.CommonOpaque },
-							rendererConfiguration = RendererConfiguration.PerObjectLightmaps | RendererConfiguration.PerObjectLightProbe
+						var drawSettings = new DrawSettings (camera, new ShaderTag ("Deferred")) {
+							rendererOptions = RendererOptions.PerObjectLightmaps | RendererOptions.PerObjectLightProbe
 						};
-                        var filterSettings = new FilterRenderersSettings(true) {renderQueueRange = RenderQueueRange.opaque};
+						var sorting = drawSettings.sorting;
+						sorting.criteria = DrawSortCriteria.CommonOpaque;
+						drawSettings.sorting = sorting;
+                        var filterSettings = new FilterSettings(RenderQueueRange.opaque);
 						loop.DrawRenderers (cullResults.visibleRenderers, ref drawSettings, filterSettings);
 
 					}
 				}
 
 				//Lighting Pass
-				using (new RenderPass.SubPass(rp, new[] { s_GBufferEmission },
+				using (new SubPass(rp, new[] { s_GBufferEmission },
 					new[] { s_GBufferAlbedo, s_GBufferSpecRough, s_GBufferNormal, s_SupportsReadOnlyDepth ? s_Depth : s_GBufferRedF32 }, true))
 				{
 					using (var cmd = new CommandBuffer { name = "Deferred Lighting and Reflections Pass"} )
@@ -494,12 +496,12 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				}
 
 				//skybox
-				using (new RenderPass.SubPass (rp, new[] { s_GBufferEmission }, null)) {
+				using (new SubPass (rp, new[] { s_GBufferEmission }, null)) {
 					loop.DrawSkybox (camera);
 				}
 
 				//Single Pass Forward Transparencies
-				using (new RenderPass.SubPass(rp, new[] { s_GBufferEmission }, null))
+				using (new SubPass(rp, new[] { s_GBufferEmission }, null))
 				{
 					using (var cmd = new CommandBuffer { name = "Forwward Lighting Setup"} )
 					{
@@ -507,18 +509,20 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 						SetupLightShaderVariables (cullResults, camera, loop, cmd);
 						loop.ExecuteCommandBuffer(cmd);
 
-						var settings = new DrawRendererSettings(camera, new ShaderPassName("ForwardSinglePass"))
+						var settings = new DrawSettings(camera, new ShaderTag("ForwardSinglePass"))
 						{
-							sorting = { flags = SortFlags.CommonTransparent },
-							rendererConfiguration = RendererConfiguration.PerObjectLightmaps | RendererConfiguration.PerObjectLightProbe,
+							rendererOptions = RendererOptions.PerObjectLightmaps | RendererOptions.PerObjectLightProbe,
 						};
-					    var filterSettings = new FilterRenderersSettings(true) {renderQueueRange = RenderQueueRange.transparent};
+						var sorting = settings.sorting;
+						sorting.criteria = DrawSortCriteria.CommonTransparent;
+						settings.sorting = sorting;
+					    var filterSettings = new FilterSettings(RenderQueueRange.transparent);
 						loop.DrawRenderers (cullResults.visibleRenderers, ref settings, filterSettings);
 					}
 				}
 
 				//Final pass
-				using (new RenderPass.SubPass(rp, new[] { s_CameraTarget }, new[] { s_GBufferEmission }))
+				using (new SubPass(rp, new[] { s_CameraTarget }, new[] { s_GBufferEmission }))
 				{
 					var cmd = new CommandBuffer { name = "FinalPass" };
 
@@ -582,8 +586,8 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 			m_FrameId.frameCount++;
 			// get the indices for all lights that want to have shadows
 			m_ShadowRequests.Clear();
-			m_ShadowRequests.Capacity = inputs.visibleLights.Count;
-			int lcnt = inputs.visibleLights.Count;
+			m_ShadowRequests.Capacity = inputs.visibleLights.Length;
+			int lcnt = inputs.visibleLights.Length;
 			for (int i = 0; i < lcnt; ++i)
 			{
 				VisibleLight vl = inputs.visibleLights[i];
@@ -628,7 +632,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 			// DST_COL = DST_COL + DST_ALPHA * SRC_COLOR
 			// DST_ALPHA = DST_ALPHA * SRC_ALPHA
 
-			int numProbes = probes.Count;
+			int numProbes = probes.Length;
 			for (int i = numProbes-1; i >= 0; i--)
 			{
 				var rl = probes [i];
@@ -647,7 +651,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				Matrix4x4 mat = Matrix4x4.identity;
 				mat.SetColumn (3, rl.localToWorld.GetColumn (3));
 
-				var boxProj = (rl.boxProjection != 0);
+				var boxProj = rl.boxProjection;
 				var probePosition = mat.GetColumn (3); // translation vector
 				var probePosition1 = new Vector4 (probePosition [0], probePosition [1], probePosition [2], boxProj ? 1f : 0f);
 
@@ -806,13 +810,13 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 
 		void RenderLightsDeferred (Camera camera, CullResults inputs, CommandBuffer cmd, ScriptableRenderContext loop)
 		{
-			int lightCount = inputs.visibleLights.Count;
+			int lightCount = inputs.visibleLights.Length;
 			for (int lightNum = 0; lightNum < lightCount; lightNum++)
 			{
 				VisibleLight light = inputs.visibleLights[lightNum];
 
-				bool intersectsNear = (light.flags & VisibleLightFlags.IntersectsNearPlane) != 0;
-				bool intersectsFar = (light.flags & VisibleLightFlags.IntersectsFarPlane) != 0;
+				bool intersectsNear = light.intersectsNearPlane;
+				bool intersectsFar = light.intersectsFarPlane;
 				bool renderAsQuad =  (intersectsNear && intersectsFar) || (light.lightType == LightType.Directional);
 
 				Vector3 lightPos = light.localToWorld.GetColumn (3); //position
@@ -873,7 +877,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 
 		private void SetupLightShaderVariables(CullResults cull, Camera camera, ScriptableRenderContext context, CommandBuffer cmd)
 		{
-			int totalLightCount = cull.visibleLights.Count;
+			int totalLightCount = cull.visibleLights.Length;
 			InitializeLightData();
 
 			var w = camera.pixelWidth;
@@ -947,7 +951,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				}
 			}
 
-			int probeCount = cull.visibleReflectionProbes.Count;
+			int probeCount = cull.visibleReflectionProbes.Length;
 			int finalProbeCount = probeCount;
 			var lightData = new SFiniteLightData[probeCount];
 			int idx = 0;
@@ -970,7 +974,7 @@ namespace UnityEngine.Experimental.Rendering.OnTileDeferredRenderPipeline
 				var blendDistance = rl.blendDistance;
 				var mat = rl.localToWorld;
 
-				var boxProj = (rl.boxProjection != 0);
+				var boxProj = rl.boxProjection;
 				var decodeVals = rl.hdr;
 
 				// C is reflection volume center in world space (NOT same as cube map capture point)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
@@ -33,7 +34,7 @@ public class BasicRenderPipeline : RenderPipelineAsset
     }
 }
 
-public class BasicRenderPipelineInstance : RenderPipeline
+public class BasicRenderPipelineInstance : RenderPipelineBase
 {
     bool useIntermediateBlit;
 
@@ -122,10 +123,9 @@ public static class BasicRendering
             // Culling
             ScriptableCullingParameters cullingParams;
             // Stereo-aware culling parameters are configured to perform a single cull for both eyes
-            if (!CullResults.GetCullingParameters(camera, stereoEnabled, out cullingParams))
+            if (!camera.TryGetCullingParameters(stereoEnabled, out cullingParams))
                 continue;
-            CullResults cull = new CullResults();
-            CullResults.Cull(ref cullingParams, context, ref cull);
+            CullResults cull = context.Cull(ref cullingParams);
 
             // Setup camera for rendering (sets render target, view/projection matrices and other
             // per-camera built-in shader variables).
@@ -153,15 +153,19 @@ public static class BasicRendering
             SetupLightShaderVariables(cull.visibleLights, context);
 
             // Draw opaque objects using BasicPass shader pass
-            var drawSettings = new DrawRendererSettings(camera, new ShaderPassName("BasicPass")) { sorting = { flags = SortFlags.CommonOpaque } };
-            var filterSettings = new FilterRenderersSettings(true) { renderQueueRange = RenderQueueRange.opaque };
+            var drawSettings = new DrawSettings(camera, new ShaderTag("BasicPass"));
+            var sorting = drawSettings.sorting;
+            sorting.criteria = DrawSortCriteria.CommonOpaque;
+            drawSettings.sorting = sorting;
+            var filterSettings = new FilterSettings(RenderQueueRange.opaque);
             context.DrawRenderers(cull.visibleRenderers, ref drawSettings, filterSettings);
 
             // Draw skybox
             context.DrawSkybox(camera);
 
             // Draw transparent objects using BasicPass shader pass
-            drawSettings.sorting.flags = SortFlags.CommonTransparent;
+            sorting.criteria = DrawSortCriteria.CommonTransparent;
+            drawSettings.sorting = sorting;
             filterSettings.renderQueueRange = RenderQueueRange.transparent;
             context.DrawRenderers(cull.visibleRenderers, ref drawSettings, filterSettings);
 
@@ -184,7 +188,7 @@ public static class BasicRendering
 
     // Setup lighting variables for shader to use
 
-    private static void SetupLightShaderVariables(List<VisibleLight> lights, ScriptableRenderContext context)
+    private static void SetupLightShaderVariables(NativeArray<VisibleLight> lights, ScriptableRenderContext context)
     {
         // We only support up to 8 visible lights here. More complex approaches would
         // be doing some sort of per-object light setups, but here we go for simplest possible
@@ -193,7 +197,7 @@ public static class BasicRendering
         // Just take first 8 lights. Possible improvements: sort lights by intensity or distance
         // to the viewer, so that "most important" lights in the scene are picked, and not the 8
         // that happened to be first.
-        int lightCount = Mathf.Min(lights.Count, kMaxLights);
+        int lightCount = Mathf.Min(lights.Length, kMaxLights);
 
         // Prepare light data
         Vector4[] lightColors = new Vector4[kMaxLights];

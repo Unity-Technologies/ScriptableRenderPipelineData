@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Rendering;
 using System;
 using System.Collections.Generic;
+using Unity.Collections;
 
 namespace UnityEngine.Experimental.Rendering.Fptl
 {
@@ -95,7 +96,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
         }
     }
 
-    public class FptlLightingInstance : RenderPipeline
+    public class FptlLightingInstance : RenderPipelineBase
     {
         private readonly FptlLighting m_Owner;
 
@@ -107,9 +108,9 @@ namespace UnityEngine.Experimental.Rendering.Fptl
                 m_Owner.Build();
         }
 
-        public override void Dispose()
+        protected override void Dispose(bool disposing)
         {
-            base.Dispose();
+            base.Dispose(disposing);
             if (m_Owner != null)
                 m_Owner.Cleanup();
         }
@@ -424,13 +425,15 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             CommandBufferPool.Release(cmd);
 
             // render opaque objects using Deferred pass
-            var drawSettings = new DrawRendererSettings(camera, new ShaderPassName("Deferred"))
+            var drawSettings = new DrawSettings(camera, new ShaderTag("Deferred"))
             {
-                sorting = { flags = SortFlags.CommonOpaque },
                 //@TODO: need to get light probes + LPPV too?
-                rendererConfiguration = RendererConfiguration.PerObjectLightmaps | RendererConfiguration.PerObjectLightProbe | RendererConfiguration.ProvideLightIndices | RendererConfiguration.ProvideReflectionProbeIndices
+                rendererOptions = RendererOptions.PerObjectLightmaps | RendererOptions.PerObjectLightProbe | RendererOptions.ProvideLightIndexes | RendererOptions.ProvideReflectionProbeIndexes
             };
-            var filterSettings = new FilterRenderersSettings(true){renderQueueRange = RenderQueueRange.opaque};
+            var sorting = drawSettings.sorting;
+            sorting.criteria = DrawSortCriteria.CommonOpaque;
+            drawSettings.sorting = sorting;
+            var filterSettings = new FilterSettings(RenderQueueRange.opaque);
             loop.DrawRenderers(cull.visibleRenderers, ref drawSettings, filterSettings);
         }
 
@@ -452,12 +455,14 @@ namespace UnityEngine.Experimental.Rendering.Fptl
 
 
             // render opaque objects using Deferred pass
-            var drawSettings = new DrawRendererSettings(camera, new ShaderPassName("ForwardSinglePass"))
+            var drawSettings = new DrawSettings(camera, new ShaderTag("ForwardSinglePass"))
             {
-                sorting = { flags = opaquesOnly ? SortFlags.CommonOpaque : SortFlags.CommonTransparent },
-                rendererConfiguration = RendererConfiguration.PerObjectLightmaps | RendererConfiguration.PerObjectLightProbe | RendererConfiguration.ProvideLightIndices | RendererConfiguration.ProvideReflectionProbeIndices
+                rendererOptions = RendererOptions.PerObjectLightmaps | RendererOptions.PerObjectLightProbe | RendererOptions.ProvideLightIndexes | RendererOptions.ProvideReflectionProbeIndexes
             };
-            var filterSettings = new FilterRenderersSettings(true) { renderQueueRange = opaquesOnly ? RenderQueueRange.opaque : RenderQueueRange.transparent };
+            var sorting = drawSettings.sorting;
+            sorting.criteria = opaquesOnly ? DrawSortCriteria.CommonOpaque : DrawSortCriteria.CommonTransparent;
+            drawSettings.sorting = sorting;
+            var filterSettings = new FilterSettings(opaquesOnly ? RenderQueueRange.opaque : RenderQueueRange.transparent);
 
             loop.DrawRenderers(cull.visibleRenderers, ref drawSettings, filterSettings);
         }
@@ -470,11 +475,11 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             CommandBufferPool.Release(cmd);
 
             // render opaque objects using Deferred pass
-            var drawSettings = new DrawRendererSettings(camera, new ShaderPassName("DepthOnly"))
-            {
-                sorting = { flags = SortFlags.CommonOpaque }
-            };
-            var filterSettings = new FilterRenderersSettings(true) {};
+            var drawSettings = new DrawSettings(camera, new ShaderTag("DepthOnly"));
+            var sorting = drawSettings.sorting;
+            sorting.criteria = DrawSortCriteria.CommonOpaque;
+            drawSettings.sorting = sorting;
+            var filterSettings = new FilterSettings(RenderQueueRange.all);
             filterSettings.renderQueueRange = RenderQueueRange.opaque;
             loop.DrawRenderers(cull.visibleRenderers, ref drawSettings, filterSettings);
         }
@@ -570,13 +575,13 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             return camera.projectionMatrix * GetFlipMatrix();
         }
 
-        static int UpdateDirectionalLights(Camera camera, IList<VisibleLight> visibleLights, Dictionary<int,int> shadowIndices)
+        static int UpdateDirectionalLights(Camera camera, NativeArray<VisibleLight> visibleLights, Dictionary<int,int> shadowIndices)
         {
             var dirLightCount = 0;
             var lights = new List<DirectionalLight>();
             var worldToView = WorldToCamera(camera);
 
-            for (int nLight = 0; nLight < visibleLights.Count; nLight++)
+            for (int nLight = 0; nLight < visibleLights.Length; nLight++)
             {
                 var light = visibleLights[nLight];
                 if (light.lightType == LightType.Directional)
@@ -623,8 +628,8 @@ namespace UnityEngine.Experimental.Rendering.Fptl
                 m_FrameId.frameCount++;
                 // get the indices for all lights that want to have shadows
                 m_ShadowRequests.Clear();
-                m_ShadowRequests.Capacity = inputs.visibleLights.Count;
-                int lcnt = inputs.visibleLights.Count;
+                m_ShadowRequests.Capacity = inputs.visibleLights.Length;
+                int lcnt = inputs.visibleLights.Length;
                 for (int i = 0; i < lcnt; ++i)
                 {
                     VisibleLight vl = inputs.visibleLights[i];
@@ -681,8 +686,8 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             }
 
 
-            var numLights = inputs.visibleLights.Count;
-            var numProbes = probes.Count;
+            var numLights = inputs.visibleLights.Length;
+            var numProbes = probes.Length;
             var numVolumes = numLights + numProbes;
 
 
@@ -696,7 +701,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
                 lightIndexMap[i] = -1;
             }
 
-            int lightIndexCount = inputs.GetLightIndicesCount();
+            int lightIndexCount = inputs.GetLightIndexesCount();
             if (s_LightIndices == null || lightIndexCount > s_LightIndices.count)
             {
                 // The light indices buffer is too small, resize
@@ -705,8 +710,8 @@ namespace UnityEngine.Experimental.Rendering.Fptl
                 s_LightIndices = new ComputeBuffer(lightIndexCount, System.Runtime.InteropServices.Marshal.SizeOf(typeof(int)));
             }
 
-            uint shadowLightIndex = 0;
-            uint lightIndex = 0;
+            int shadowLightIndex = 0;
+            int lightIndex = 0;
             foreach (var cl in inputs.visibleLights)
             {
                 var range = cl.range;
@@ -892,7 +897,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
                 var mat = rl.localToWorld;
 
                 // implicit in CalculateHDRDecodeValues() --> float ints = rl.intensity;
-                var boxProj = (rl.boxProjection != 0);
+                var boxProj = rl.boxProjection;
                 var decodeVals = rl.hdr;
                 //Vector4 decodeVals = rl.CalculateHDRDecodeValues();
 
@@ -965,7 +970,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             s_ConvexBoundsBuffer.SetData(boundData);
             s_LightDataBuffer.SetData(lightData);
 
-            inputs.FillLightIndices(s_LightIndices);
+            inputs.FillLightIndexes(s_LightIndices);
             return numLightsOut + numProbesOut;
         }
 
@@ -975,12 +980,12 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             foreach (var camera in cameras)
             {
                 ScriptableCullingParameters cullingParams;
-                if (!CullResults.GetCullingParameters(camera, out cullingParams))
+                if (!camera.TryGetCullingParameters(camera, out cullingParams))
                     continue;
 
                 m_ShadowMgr.UpdateCullingParameters( ref cullingParams );
 
-                CullResults.Cull(ref cullingParams, renderContext, ref m_CullResults);
+                m_CullResults = renderContext.Cull(ref cullingParams);
                 ExecuteRenderLoop(camera, m_CullResults, renderContext);
             }
 
@@ -1081,7 +1086,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             if (enableClustered) RenderForward(cullResults, camera, loop, false);
 
             // debug views.
-            if (enableDrawLightBoundsDebug) DrawLightBoundsDebug(loop, cullResults.visibleLights.Count);
+            if (enableDrawLightBoundsDebug) DrawLightBoundsDebug(loop, cullResults.visibleLights.Length);
 
             // present frame buffer.
             FinalPass(loop);

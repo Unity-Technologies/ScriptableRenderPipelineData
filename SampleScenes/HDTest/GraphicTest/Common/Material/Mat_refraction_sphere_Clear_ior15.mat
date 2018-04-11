@@ -9,7 +9,7 @@ Material:
   m_Name: Mat_refraction_sphere_Clear_ior15
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
   m_ShaderKeywords: _BLENDMODE_ALPHA _BLENDMODE_PRESERVE_SPECULAR_LIGHTING _ENABLE_FOG_ON_TRANSPARENT
-    _NORMALMAP_TANGENT_SPACE _REFRACTION_SPHERE _SURFACE_TYPE_TRANSPARENT
+    _NORMALMAP_TANGENT_SPACE _REFRACTION_SPHERE _REFRACTION_SSRAY_PROXY _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -235,7 +235,7 @@ Material:
     - _IOR: 1.5
     - _InitialBend: 1
     - _InvTilingScale: 1
-    - _Ior: 1
+    - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
@@ -255,9 +255,12 @@ Material:
     - _PerPixelDisplacementObjectScale: 1
     - _PreRefractionPass: 0
     - _PreTransparentPass: 0
+    - _ReflectionSSRayModel: 0
     - _RefractionAbsorptionEnable: 0
     - _RefractionEnable: 0
     - _RefractionMode: 2
+    - _RefractionModel: 2
+    - _RefractionSSRayModel: 1
     - _RoughRefractionEnable: 1
     - _SSSAndTransmissionType: 0
     - _ShiverDirectionality: 0.5

@@ -530,6 +530,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -1349,6 +1350,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -1897,6 +1899,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -3074,6 +3077,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -3682,6 +3686,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -3822,6 +3827,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -4721,6 +4727,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -5043,6 +5050,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 2
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 16
   shapeHeight: 0.5
   aspectRatio: 1
@@ -5281,6 +5289,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -5459,6 +5468,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -5504,14 +5514,16 @@ MonoBehaviour:
   - 0.2
   - 0.2
   shadowAlgorithm: 0
-  shadowVariant: 0
+  shadowVariant: 2
   shadowPrecision: 0
   shadowData:
-    format: 0
-    data: 0bd7a33b0000803f
+    format: 2
+    data: 000000000000803f
   shadowDatas:
   - format: 0
     data: 0bd7a33b0000803f
+  - format: 2
+    data: 000000000000803f
 --- !u!1 &736659727
 GameObject:
   m_ObjectHideFlags: 0
@@ -6397,6 +6409,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -6579,6 +6592,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 1
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 16
   shapeHeight: 2
   aspectRatio: 1
@@ -6949,6 +6963,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -7209,6 +7224,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -7559,6 +7575,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 1
+  enableSpotReflector: 0
   shapeWidth: 2
   shapeHeight: 0.5
   aspectRatio: 1
@@ -8026,6 +8043,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -8287,6 +8305,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -8794,6 +8813,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -9222,6 +9242,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -9316,12 +9337,14 @@ MonoBehaviour:
   - 0.2
   - 0.2
   shadowAlgorithm: 0
-  shadowVariant: 0
+  shadowVariant: 3
   shadowPrecision: 0
   shadowData:
-    format: 0
-    data: 
-  shadowDatas: []
+    format: 3
+    data: 000000000000803f
+  shadowDatas:
+  - format: 3
+    data: 000000000000803f
 --- !u!1001 &1062558345
 Prefab:
   m_ObjectHideFlags: 0
@@ -9426,6 +9449,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -9687,6 +9711,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -9827,6 +9852,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 1
   shapeHeight: 0.5
   aspectRatio: 1
@@ -10235,6 +10261,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6835875dbc036b34d9440c753be624ae, type: 2}
+    - target: {fileID: 100000, guid: a4ce73c115746a34ba12813555ed5d78, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4ce73c115746a34ba12813555ed5d78, type: 3}
   m_IsPrefabParent: 0
@@ -10291,6 +10321,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -10431,6 +10462,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -10877,6 +10909,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -11130,6 +11163,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -11211,12 +11245,14 @@ MonoBehaviour:
   - 0.2
   - 0.2
   shadowAlgorithm: 0
-  shadowVariant: 0
+  shadowVariant: 2
   shadowPrecision: 0
   shadowData:
-    format: 0
-    data: 
-  shadowDatas: []
+    format: 2
+    data: 000000000000803f
+  shadowDatas:
+  - format: 2
+    data: 000000000000803f
 --- !u!1 &1247488469
 GameObject:
   m_ObjectHideFlags: 0
@@ -11653,6 +11689,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -11793,6 +11830,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -12531,6 +12569,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -13753,6 +13792,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -13893,6 +13933,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -14506,6 +14547,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 1
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 4
   shapeHeight: 2
   aspectRatio: 1
@@ -15334,6 +15376,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -16372,7 +16415,7 @@ MonoBehaviour:
     type: 2}
 --- !u!114 &1828470169
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1828470159}
@@ -16694,6 +16737,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -16792,6 +16836,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 2
+  enableSpotReflector: 0
   shapeWidth: 2
   shapeHeight: 0.5
   aspectRatio: 1
@@ -17494,6 +17539,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -17636,6 +17682,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -17820,6 +17867,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -18009,6 +18057,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -18240,6 +18289,7 @@ MonoBehaviour:
   affectSpecular: 1
   lightTypeExtent: 0
   spotLightShape: 0
+  enableSpotReflector: 0
   shapeWidth: 0
   shapeHeight: 0.5
   aspectRatio: 1
@@ -18778,6 +18828,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010760374938, guid: 1faa212e4ad88f04a81c5ed019001de5, type: 2}
       propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012470308022, guid: 1faa212e4ad88f04a81c5ed019001de5, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

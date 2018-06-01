@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Mat_Distorsion_Unlit_Reject
   m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
@@ -147,7 +147,6 @@ Material:
     - _Drag: 1
     - _DstBlend: 10
     - _EmissiveColorMode: 1
-    - _EmissiveIntensity: 0
     - _EnableFogOnTransparent: 0
     - _EnablePerPixelDisplacement: 0
     - _EnableSpecularOcclusion: 0

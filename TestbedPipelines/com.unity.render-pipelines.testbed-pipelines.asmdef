@@ -1,8 +1,8 @@
 {
     "name": "com.unity.render-pipelines.testbed-pipelines",
     "references": [
-        "com.unity.render-pipelines.core.Runtime",
-        "com.unity.postprocessing.Runtime"
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.Postprocessing.Runtime"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

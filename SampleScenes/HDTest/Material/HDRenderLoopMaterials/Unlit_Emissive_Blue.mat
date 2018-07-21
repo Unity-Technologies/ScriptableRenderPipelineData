@@ -153,6 +153,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HdrpVersion: 2
     - _HeightBias: 0
     - _HeightMapMode: 0
     - _HeightScale: 1

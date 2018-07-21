@@ -8,9 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Tree_03_Trunk_Layer
   m_Shader: {fileID: 4800000, guid: eab0538d9d5746246806a9611c04ac4d, type: 3}
-  m_ShaderKeywords: _DENSITY_MODE _DETAIL_MAP0 _HEIGHTMAP0 _LAYER_MASK_VERTEX_COLOR_ADD
-    _MASKMAP0 _NORMALMAP0 _NORMALMAP_TANGENT_SPACE0 _NORMALMAP_TANGENT_SPACE1 _NORMALMAP_TANGENT_SPACE2
-    _NORMALMAP_TANGENT_SPACE3 _TESSELLATION_PHONG
+  m_ShaderKeywords: _DENSITY_MODE _DETAIL_MAP0 _HEIGHTMAP0 _LAYER_MASK_VERTEX_COLOR_ADD _MASKMAP0 _NORMALMAP0 _NORMALMAP_TANGENT_SPACE0 _NORMALMAP_TANGENT_SPACE1 _NORMALMAP_TANGENT_SPACE2 _NORMALMAP_TANGENT_SPACE3 _TESSELLATION_PHONG
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -341,6 +339,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HdrpVersion: 2
     - _HeightAmplitude0: 0.08
     - _HeightAmplitude1: 0.1
     - _HeightAmplitude2: 1
@@ -496,7 +495,7 @@ Material:
     - _SubsurfaceRadius1: 1
     - _SubsurfaceRadius2: 1
     - _SubsurfaceRadius3: 1
-    - _SupportDBuffer: 1
+    - _SupportDecals: 1
     - _SurfaceType: 0
     - _TessellationBackFaceCullEpsilon: -0.25
     - _TessellationFactor: 15

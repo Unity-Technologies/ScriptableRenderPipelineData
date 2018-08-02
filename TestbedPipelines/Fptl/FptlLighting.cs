@@ -32,7 +32,7 @@ namespace UnityEngine.Experimental.Rendering.Fptl
             atlasInit.shaderKeyword                   = null;
             atlasInit.shadowClearShader               = Shader.Find("Hidden/ScriptableRenderPipeline/ShadowClear");
 
-            m_Shadowmaps = new ShadowmapBase[] { new ShadowAtlas(ref atlasInit) };
+            m_Shadowmaps = null; // new ShadowmapBase[] { new ShadowAtlas(ref atlasInit) };
 
             ShadowContext.SyncDel syncer = (ShadowContext sc) =>
                 {

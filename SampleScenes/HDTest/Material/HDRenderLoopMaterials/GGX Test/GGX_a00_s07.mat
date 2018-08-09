@@ -178,7 +178,7 @@ Material:
     - _AlphaCutoffEnable: 0
     - _AlphaCutoffPostpass: 0.5
     - _AlphaCutoffPrepass: 0.5
-    - _Anisotropy: 0
+    - _Anisotropy: -0.4
     - _BlendMode: 0
     - _BumpScale: 1
     - _CoatCoverage: 1

@@ -52,12 +52,9 @@ public class MiniProfiler : MonoBehaviour {
     void Update()
     {
 
-        if (!Application.isEditor)
+        if ( Input.GetKeyDown(KeyCode.F9))
         {
-            if ( Input.GetKeyDown(KeyCode.F9))
-            {
-//                GraphicsSettings.useScriptableRenderPipelineBatching = !GraphicsSettings.useScriptableRenderPipelineBatching;
-            }
+            GraphicsSettings.useScriptableRenderPipelineBatching = !GraphicsSettings.useScriptableRenderPipelineBatching;
         }
 
         if (m_Enable)

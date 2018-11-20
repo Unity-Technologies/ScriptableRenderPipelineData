@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21215841, g: 0.21215841, b: 0.21215841, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450944471}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -205,6 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450944471}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -219,6 +222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 30f4b897495c7ad40b2d47143e02aaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -412,7 +416,6 @@ GameObject:
   - component: {fileID: 655186052}
   - component: {fileID: 655186051}
   - component: {fileID: 655186057}
-  - component: {fileID: 655186056}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -429,6 +432,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 655186050}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -446,6 +450,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 655186050}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -508,9 +513,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -561,6 +567,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 655186050}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 618b0e3f6c65dd247a4a016150006c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -569,20 +576,6 @@ MonoBehaviour:
   m_MoveSpeed: 7
   m_MoveSpeedIncrement: 2.5
   m_Turbo: 5
---- !u!114 &655186056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655186050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06c0317e0632e6c47bb855ee99f95544, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderPipelineAsset: {fileID: 11400000, guid: b3c44d1c6f1251a4fa4fe7a22f381477,
-    type: 2}
 --- !u!114 &655186057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +585,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 655186050}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -691,6 +685,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 707126391}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: afb8d970ad3c49543a54d8d0b99ea8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -783,6 +778,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 840673558}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -828,6 +824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 921166726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: afb8d970ad3c49543a54d8d0b99ea8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -921,6 +918,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 958474770}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: afb8d970ad3c49543a54d8d0b99ea8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1014,6 +1012,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 994886816}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: afb8d970ad3c49543a54d8d0b99ea8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1092,12 +1091,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086230580}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 0.93184584, b: 0.8455882, a: 1}
   m_Intensity: 3.14
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -1145,6 +1145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1086230580}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1194,6 +1195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1086230580}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1351,6 +1353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1831735581}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: afb8d970ad3c49543a54d8d0b99ea8f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1417,6 +1420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1893808140}
   m_Enabled: 0
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 3db4c4a72731246b2b1ad1e73178c04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1465,6 +1469,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043956354}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 543ddbe12367a4899b011d43ef41f357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

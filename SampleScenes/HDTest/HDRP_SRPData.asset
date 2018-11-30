@@ -48,6 +48,8 @@ MonoBehaviour:
     runLightListAsync: 1
     runSSRAsync: 1
     runSSAOAsync: 1
+    runContactShadowsAsync: 1
+    runVolumeVoxelizationAsync: 1
     lightLoopSettings:
       overrides: 0
       enableTileAndCluster: 1
@@ -90,6 +92,8 @@ MonoBehaviour:
     runLightListAsync: 1
     runSSRAsync: 1
     runSSAOAsync: 1
+    runContactShadowsAsync: 1
+    runVolumeVoxelizationAsync: 1
     lightLoopSettings:
       overrides: 0
       enableTileAndCluster: 1
@@ -132,6 +136,8 @@ MonoBehaviour:
     runLightListAsync: 1
     runSSRAsync: 1
     runSSAOAsync: 1
+    runContactShadowsAsync: 1
+    runVolumeVoxelizationAsync: 1
     lightLoopSettings:
       overrides: 0
       enableTileAndCluster: 1
@@ -150,6 +156,10 @@ MonoBehaviour:
     supportVolumetrics: 1
     increaseResolutionOfVolumetrics: 0
     supportLightLayers: 0
+    supportDistortion: 1
+    supportTransparentBackface: 1
+    supportTransparentDepthPrepass: 1
+    supportTransparentDepthPostpass: 1
     supportedLitShaderMode: 3
     supportDecals: 1
     supportMSAA: 0
@@ -184,8 +194,7 @@ MonoBehaviour:
       maxShadowRequests: 128
       shadowMapsDepthBits: 32
       useDynamicViewportRescale: 1
-      punctualShadowQuality: 0
-      directionalShadowQuality: 0
+      shadowQuality: 0
     decalSettings:
       drawDistance: 1000
       atlasWidth: 4096
@@ -193,4 +202,6 @@ MonoBehaviour:
       perChannelMask: 0
   allowShaderVariantStripping: 1
   enableSRPBatcher: 0
-  diffusionProfileSettings: {fileID: 0}
+  enableVariantStrippingLog: 0
+  diffusionProfileSettings: {fileID: 11400000, guid: f8dc5a523c1b1f44ebb3b2b9013b041d,
+    type: 2}

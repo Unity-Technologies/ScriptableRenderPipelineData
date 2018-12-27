@@ -11,7 +11,7 @@ public class MaterialPlacer : MonoBehaviour
     }
 
     [SerializeField]
-    Renderer m_Prefab;
+    Renderer m_Prefab = null;
 
     [SerializeField]
     int m_Rows = 2;
@@ -23,11 +23,11 @@ public class MaterialPlacer : MonoBehaviour
     Vector3 m_Size = Vector3.one;
 
     [SerializeField]
-    TargetType m_TargetType;
+    TargetType m_TargetType = TargetType.Float;
 
     [SerializeField]
     [FormerlySerializedAs("m_FloatName")]
-    string m_PropertyName;
+    string m_PropertyName = "";
 
     [SerializeField]
     [FormerlySerializedAs("m_FromValue")]

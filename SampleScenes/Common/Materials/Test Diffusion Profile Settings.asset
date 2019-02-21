@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2686e09ec7aef44bad2843e4416f057, type: 3}
   m_Name: Test Diffusion Profile Settings
   m_EditorClassIdentifier: 
+  profile:
+    name: Skin
+    scatteringDistance: {r: 0.7568628, g: 0.32156864, b: 0.20000002, a: 1}
+    transmissionTint: {r: 0.7568628, g: 0.32156864, b: 0.20000002, a: 1}
+    texturingMode: 0
+    transmissionMode: 0
+    thicknessRemap: {x: 0, y: 8.152544}
+    worldScale: 1
+    ior: 1.4
+    hash: 1080890536
+  m_Version: 1
   profiles:
   - name: Skin
     scatteringDistance: {r: 0.7568628, g: 0.32156864, b: 0.20000002, a: 1}
@@ -21,6 +32,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 8.152544}
     worldScale: 1
     ior: 1.4
+    hash: 1080890536
   - name: Foliage
     scatteringDistance: {r: 0.7568628, g: 0.7019608, b: 0.24313727, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -29,6 +41,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 0.2873168}
     worldScale: 1
     ior: 1.4
+    hash: 1078703093
   - name: Profile 2
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -37,6 +50,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1079754654
   - name: Profile 3
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -45,6 +59,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1080912332
   - name: Profile 4
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -53,6 +68,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1081708114
   - name: Profile 5
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -61,6 +77,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1077583072
   - name: Profile 6
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -69,6 +86,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1076581588
   - name: Profile 8
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -77,6 +95,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1078485105
   - name: Profile 9
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -85,6 +104,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1081697073
   - name: Profile 10
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -93,6 +113,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1079347611
   - name: Profile 11
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -101,6 +122,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1081474237
   - name: Profile 12
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -109,6 +131,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1074354624
   - name: Profile 13
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -117,6 +140,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1080641234
   - name: Profile 14
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -125,6 +149,7 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1073850828
   - name: Profile 15
     scatteringDistance: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     transmissionTint: {r: 1, g: 1, b: 1, a: 1}
@@ -133,3 +158,4 @@ MonoBehaviour:
     thicknessRemap: {x: 0, y: 5}
     worldScale: 1
     ior: 1.4
+    hash: 1082002819
